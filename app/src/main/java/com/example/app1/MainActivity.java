@@ -2,6 +2,7 @@ package com.example.app1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     EditText edimie = findViewById(R.id.editimie);
+    boolean pan, pani;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +38,31 @@ public class MainActivity extends AppCompatActivity {
     }
     public void dajel(View view)
     {
-        String edtimie = edimie.getText().toString();
+        Intent intentPan = new Intent(MainActivity.this, PaniActivity.class);
+        Intent intentPani = new Intent(MainActivity.this, PanActivity.class);
 
+        String imieS = edimie.getText().toString();
 
-    }
-    public void takk(String Name)
-    {
-        if(edimie.matches(".{2,}e"))
-        {
-            tak na wszelki
+        if(imieS.length() > 0){
+            validateName(imieS);
+
+            if(pani){
+                startActivity(intentPani);
+            }
+
+            if(pan){
+                startActivity(intentPan);
+            }
+        }else{
+            edimie.setError("Puste pole");
         }
+
+
     }
+    public void validateName(String Name) {
+        if(Name.matches(".{2,}a")){
+            pani = true;
+        }else{
+            pan = true;
+        }
 }
