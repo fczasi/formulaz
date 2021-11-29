@@ -11,7 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    EditText edimie = findViewById(R.id.editimie);
+
+    private Button dalej;
+    private CheckBox robot;
+
     boolean pan, pani;
 
     @Override
@@ -19,29 +22,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button dal = findViewById(R.id.dalej);
-        CheckBox chim = findViewById(R.id.checkimie);
+        dalej = findViewById(R.id.dalej);
+        robot = findViewById(R.id.checkimie);
 
+        dalej.setEnabled(false);
 
-        chim.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        robot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
-                    dal.setEnabled(true);
-                }else
-                    {
-                        dal.setEnabled(false);
-                    }
+                if(isChecked){
+                    dalej.setEnabled(true);
+                }else{
+                    dalej.setEnabled(false);
+                }
             }
         });
+
     }
-    public void dajel(View view)
-    {
+
+    public void dajel(View view){
+        EditText imie = findViewById(R.id.editimie);
+
         Intent intentPan = new Intent(MainActivity.this, PaniActivity.class);
         Intent intentPani = new Intent(MainActivity.this, PanActivity.class);
 
-        String imieS = edimie.getText().toString();
+        String imieS = imie.getText().toString();
 
         if(imieS.length() > 0){
             validateName(imieS);
@@ -54,16 +59,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentPan);
             }
         }else{
-            edimie.setError("Puste pole");
+            imie.setError("Puste pole");
         }
 
 
+
     }
+
     public void validateName(String Name) {
         if(Name.matches(".{2,}a")){
             pani = true;
         }else{
             pan = true;
         }
-}
+    }
 }
