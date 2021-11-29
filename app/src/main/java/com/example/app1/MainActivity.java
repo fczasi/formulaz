@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    EditText edimie = findViewById(R.id.editimie);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,15 @@ public class MainActivity extends AppCompatActivity {
     }
     public void dajel(View view)
     {
-        EditText edimie = findViewById(R.id.editimie);
         String edtimie = edimie.getText().toString();
 
 
+    }
+    public void takk(String Name)
+    {
+        if(edimie.matches(".{2,}e"))
+        {
+            tak na wszelki
+        }
     }
 }
