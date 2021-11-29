@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void validateName(String Name) {
         if(Name.matches(".{2,}a")){
-            pani = true;
-        }else{
             pan = true;
+        }else{
+            pani = true;
         }
     }
 }
